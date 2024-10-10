@@ -8,6 +8,7 @@ class Imc extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
+        elevation: 6,
         color: Theme.of(context).primaryColor,
         child: Column(
           mainAxisSize: MainAxisSize.min,

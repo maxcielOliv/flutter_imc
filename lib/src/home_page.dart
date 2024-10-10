@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_imc/src/widgets/height.dart';
 import 'package:flutter_imc/src/widgets/imc.dart';
 import 'package:flutter_imc/src/controller/icm_controller.dart';
+import 'package:flutter_imc/src/widgets/info.dart';
 import 'package:flutter_imc/src/widgets/weigth.dart';
 
 class HomePage extends StatefulWidget {
@@ -43,10 +44,12 @@ class _HomePageState extends State<HomePage> {
         title: const Text('IMC'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: 100,
-            child: Imc(value: 'Seu IMC é: ${controler.total}'),
+            height: MediaQuery.of(context).size.height * 0.3,
+            child:
+                Imc(value: 'Seu IMC é: ${controler.total.toStringAsFixed(2)}'),
           ),
           Weigth(
             weigth: weigth,
@@ -54,15 +57,24 @@ class _HomePageState extends State<HomePage> {
           separator,
           Height(height: height),
           separator,
-          FloatingActionButton(
-            onPressed: () {
-              weightNew = double.parse(weigth.text);
-              heightNew = double.parse(height.text);
-              controler.sum(weightNew, heightNew);
-            },
-            child: const Icon(
-              Icons.check,
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  weightNew = double.parse(weigth.text);
+                  heightNew = double.parse(height.text);
+                  controler.sum(weightNew, heightNew);
+                },
+                child: const Icon(
+                  Icons.check,
+                ),
+              ),
+              separator,
+              controler.total > 0
+                  ? Info(text: controler.information())
+                  : Container()
+            ],
           ),
         ],
       ),
