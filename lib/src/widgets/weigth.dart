@@ -8,7 +8,7 @@ class Weigth extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: weigth,
-      keyboardType: TextInputType.number,
+      keyboardType: const TextInputType.numberWithOptions(decimal: true),
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         fillColor: Theme.of(context).primaryColor,

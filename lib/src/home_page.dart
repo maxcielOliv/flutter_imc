@@ -33,8 +33,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final weigth = TextEditingController();
-    final height = TextEditingController();
+    final weigthController = TextEditingController();
+    final heightController = TextEditingController();
     double weightNew;
     double heightNew;
     const separator = SizedBox(height: 20);
@@ -51,30 +51,39 @@ class _HomePageState extends State<HomePage> {
             child:
                 Imc(value: 'Seu IMC é: ${controler.total.toStringAsFixed(2)}'),
           ),
-          Weigth(
-            weigth: weigth,
+          SizedBox(
+            width: MediaQuery.of(context).size.height * 0.5,
+            child: Weigth(
+              weigth: weigthController,
+            ),
           ),
           separator,
-          Height(height: height),
+          SizedBox(
+            width: MediaQuery.of(context).size.height * 0.5,
+            child: Height(height: heightController),
+          ),
           separator,
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  weightNew = double.parse(weigth.text);
-                  heightNew = double.parse(height.text);
-                  controler.sum(weightNew, heightNew);
-                },
-                child: const Icon(
-                  Icons.check,
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    weightNew = double.parse(weigthController.text);
+                    heightNew = double.parse(heightController.text);
+                    controler.sum(weightNew, heightNew);
+                  },
+                  child: const Icon(
+                    Icons.check,
+                  ),
                 ),
-              ),
-              separator,
-              controler.total > 0
-                  ? Info(text: controler.information())
-                  : Container()
-            ],
+                separator,
+                controler.total > 0
+                    ? Info(text: controler.information())
+                    : Container()
+              ],
+            ),
           ),
         ],
       ),

@@ -5,8 +5,8 @@ class ImcController extends ChangeNotifier {
   Widget text = Text(
     '',
   );
-  final TextStyle _style =
-      TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white);
+  final TextStyle _style = const TextStyle(
+      fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white);
 
   sum(double weight, double height) {
     if (total == 0) {

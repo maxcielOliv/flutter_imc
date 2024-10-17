@@ -8,7 +8,7 @@ class Height extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: height,
-      keyboardType: TextInputType.number,
+      keyboardType: const TextInputType.numberWithOptions(decimal: true),
       textInputAction: TextInputAction.send,
       decoration: InputDecoration(
         fillColor: Theme.of(context).primaryColor,
